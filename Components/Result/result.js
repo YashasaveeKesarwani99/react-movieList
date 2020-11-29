@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./result.css";
 class Result extends Component {
   constructor(props) {
     super(props);
@@ -9,8 +9,8 @@ class Result extends Component {
   render() {
     return (
       <div className="result">
-        <img src={this.props.image} alt="image" />
-        <div>
+        <img className="img" src={this.props.image} alt="image" />
+        <div className="text">
           <p className="title">{this.props.title}</p>
           <p className="release">{this.props.release}</p>
           <p className="overview">{this.props.overview}</p>

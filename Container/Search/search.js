@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Result from "../../Components/Result/result";
-
+import "./search.css";
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -33,13 +33,21 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="search">
-        <input
-          placeholder="Enter movie name"
-          onChange={(e) => this.inputHandler(e)}
-          value={this.state.val}
-        />
-        <input type="submit" onClick={this.clickHandler} value="Search" />
+      <>
+        <div className="search">
+          <input
+            className="input"
+            placeholder="Enter movie name"
+            onChange={(e) => this.inputHandler(e)}
+            value={this.state.val}
+          />
+          <input
+            type="submit"
+            className="button"
+            onClick={this.clickHandler}
+            value="Search"
+          />
+        </div>
         {this.state.arr.map((obj) => {
           return (
             <Result
@@ -54,7 +62,7 @@ class Search extends Component {
             />
           );
         })}
-      </div>
+      </>
     );
   }
 }
