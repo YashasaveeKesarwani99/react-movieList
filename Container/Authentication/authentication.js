@@ -1,33 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
+import { emailHandler, passwordHandler } from "../../Actions/actions";
+
 class Authentication extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
       isLoggedIn: false
     };
   }
 
-  emailHandler = (e) => {
-    this.setState({
-      email: e.target.value
-    });
-  };
+  clickHandler = (pops) => {
+    const email = this.props.email;
+    const pass = this.props.password;
 
-  passwordHandler = (e) => {
-    this.setState({
-      password: e.target.value
-    });
-  };
-
-  clickHandler = (props) => {
-    const email = this.state.email;
-    const pass = this.state.password;
-
-    if (props === "signup") {
+    if (pops === "signup") {
       axios
         .post(
           "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCqafnYZyRuKxhTEsfg1gaSQ2N6p9pwS_U",
@@ -37,24 +26,24 @@ class Authentication extends Component {
           }
         )
         .then((res) => {
-          if(res.status === 200)
-          {
-            this.setState({isLoggedIn:true})
+          if (res.status === 200) {
+            this.setState({ isLoggedIn: true });
           }
         });
-    } else if (props === "login") {
-      axios.post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCqafnYZyRuKxhTEsfg1gaSQ2N6p9pwS_U",
-        {
-          email: email,
-          password: pass
-        }
-      ).then(res =>{
-        if(res.status === 200)
-        {
-          this.setState({isLoggedIn:true})
-        }
-      });
+    } else if (pops === "login") {
+      axios
+        .post(
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCqafnYZyRuKxhTEsfg1gaSQ2N6p9pwS_U",
+          {
+            email: email,
+            password: pass
+          }
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            this.setState({ isLoggedIn: true });
+          }
+        });
     }
   };
 
@@ -71,12 +60,12 @@ class Authentication extends Component {
           <h3>Movie List</h3>
           <input
             placeholder="Email"
-            onChange={(e) => this.emailHandler(e)}
+            onChange={(e) => this.props.emailHandler(e)}
             value={this.state.email}
           />
           <input
             placeholder="Password"
-            onChange={(e) => this.passwordHandler(e)}
+            onChange={(e) => this.props.passwordHandler(e)}
             value={this.state.password}
           />
           <input
@@ -95,4 +84,13 @@ class Authentication extends Component {
   }
 }
 
-export default Authentication;
+const mapStateToProps = (state) => {
+  return {
+    email: state.email,
+    password: state.password
+  };
+};
+
+export default connect(mapStateToProps, { emailHandler, passwordHandler })(
+  Authentication
+);
