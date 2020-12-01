@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 class Authentication extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
-      isLoggedIn: true
+      isLoggedIn: false
     };
   }
 
@@ -22,7 +23,40 @@ class Authentication extends Component {
     });
   };
 
-  clickHandler = () => {};
+  clickHandler = (props) => {
+    const email = this.state.email;
+    const pass = this.state.password;
+
+    if (props === "signup") {
+      axios
+        .post(
+          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCqafnYZyRuKxhTEsfg1gaSQ2N6p9pwS_U",
+          {
+            email: email,
+            password: pass
+          }
+        )
+        .then((res) => {
+          if(res.status === 200)
+          {
+            this.setState({isLoggedIn:true})
+          }
+        });
+    } else if (props === "login") {
+      axios.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCqafnYZyRuKxhTEsfg1gaSQ2N6p9pwS_U",
+        {
+          email: email,
+          password: pass
+        }
+      ).then(res =>{
+        if(res.status === 200)
+        {
+          this.setState({isLoggedIn:true})
+        }
+      });
+    }
+  };
 
   render() {
     if (this.state.isLoggedIn) {
@@ -38,14 +72,23 @@ class Authentication extends Component {
           <input
             placeholder="Email"
             onChange={(e) => this.emailHandler(e)}
-            value=""
+            value={this.state.email}
           />
           <input
             placeholder="Password"
             onChange={(e) => this.passwordHandler(e)}
-            value=""
+            value={this.state.password}
           />
-          <input type="submit" onClick={this.clickHandler} />
+          <input
+            type="submit"
+            value="SignUp"
+            onClick={() => this.clickHandler("signup")}
+          />
+          <input
+            type="submit"
+            value="LogIn"
+            onClick={() => this.clickHandler("login")}
+          />
         </div>
       );
     }
