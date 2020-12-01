@@ -2,4 +2,7 @@
 
 Created with CodeSandbox
 
-up and running on https://svb33.csb.app/
+Up and running at https://kmhhi.csb.app/ 
+1. Firebase database and authentication
+2. Redux 
+3. Routing
