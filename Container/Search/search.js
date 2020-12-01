@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Result from "../../Components/Result/result";
 import "./search.css";
 class Search extends Component {
@@ -62,6 +63,9 @@ class Search extends Component {
             />
           );
         })}
+        <Link to="/">
+          <p>Go to Home</p>
+        </Link>
       </>
     );
   }
