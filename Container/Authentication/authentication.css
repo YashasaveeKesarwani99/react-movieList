@@ -2,3 +2,24 @@
   margin: 0;
   padding: 0;
 }
+.authContainer {
+  margin: 30px;
+  margin-top: -10px;
+  float: right;
+  height: 400px;
+  width: 30%;
+  background-color: white;
+  border-radius: 5px;
+}
+
+input {
+  display: block;
+  margin: 40px;
+  width: 50%;
+  padding: 10px;
+  font-size: 14px;
+  border: #004d40 solid;
+  border-radius: 3px;
+  outline: 0;
+  margin: 40px auto;
+}

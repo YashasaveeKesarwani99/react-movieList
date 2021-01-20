@@ -1,36 +1,43 @@
 import React from "react";
+import Slider from "react-animated-slider";
+import "react-animated-slider/build/horizontal.css";
 import FilmArray from "../filmQuotes/filmQuotes";
-import { useEffect } from "react";
-
-const SlideShow = (props) => {
-  var i = 0;
-  var filmObject = {};
-
-  const slideNext = () => {
-    i++;
-    if (i > 6) {
-      i = 0;
-    }
-
-    setTimeout(slides(), 1000);
-  };
-
-  const slides = () => {
-    filmObject = FilmArray[i];
-    setTimeout(slideNext(), 2000);
-  };
-
-  slides();
-
+import "./slideShow.css";
+const SlideShow = () => {
   return (
     <div
       style={{
-        opacity: "0",
-        transition: "opacity 1.0s ease-in"
+        width: "50%"
       }}
     >
-      <div>{filmObject.quote}</div>
-      <div>{filmObject.film}</div>
+      <Slider>
+        {FilmArray.map((slide) => (
+          <div
+            style={{
+              textAlign: "center"
+            }}
+          >
+            <h1
+              style={{
+                fontFamily: "'Roboto', sans-serif",
+                fontSize: "4em",
+                color: "white"
+              }}
+            >
+              {slide.quote}
+            </h1>
+            <div
+              style={{
+                fontFamily: "'Roboto', sans-serif",
+                fontSize: "1em",
+                color: "white"
+              }}
+            >
+              {slide.film}
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };

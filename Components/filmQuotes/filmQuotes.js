@@ -13,8 +13,7 @@ var FilmArray = [
     film: "Dead Poets Society, 1989"
   },
   {
-    quote:
-      "My mama always said life was like a box of chocolates. You never know what you're gonna get",
+    quote: "My mama always said life was like a box of chocolates.",
     film: "Forrest Gump, 1994"
   },
   {

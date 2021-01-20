@@ -68,37 +68,47 @@ class Authentication extends Component {
               fontWeight: "bold",
               letterSpacing: "-1px",
               lineHeight: "1",
-              textAlign: "left",
+              textAlign: "center",
               padding: "2%",
               borderBottom: "5px solid black"
             }}
           >
             Movie List.
           </h3>
-          <div className="authQuotes">
-            <SlideShow />
-          </div>
-          <div className="authContainer">
-            <input
-              placeholder="Email"
-              onChange={(e) => this.props.emailHandler(e)}
-              value={this.state.email}
-            />
-            <input
-              placeholder="Password"
-              onChange={(e) => this.props.passwordHandler(e)}
-              value={this.state.password}
-            />
-            <input
-              type="submit"
-              value="SignUp"
-              onClick={() => this.clickHandler("signup")}
-            />
-            <input
-              type="submit"
-              value="LogIn"
-              onClick={() => this.clickHandler("login")}
-            />
+          <div className="authMain">
+            <div className="authContainer">
+              <input
+                placeholder="Email"
+                onChange={(e) => this.props.emailHandler(e)}
+                value={this.state.email}
+              />
+              <input
+                placeholder="Password"
+                onChange={(e) => this.props.passwordHandler(e)}
+                value={this.state.password}
+              />
+              <input
+                type="submit"
+                value="SignUp"
+                onClick={() => this.clickHandler("signup")}
+                style={{
+                  margin: "40px auto",
+                  backgroundColor: "#004d40"
+                }}
+              />
+              <input
+                type="submit"
+                value="LogIn"
+                onClick={() => this.clickHandler("login")}
+                style={{
+                  margin: "auto",
+                  backgroundColor: "#004d40"
+                }}
+              />
+            </div>
+            <div className="authQuotes">
+              <SlideShow />
+            </div>
           </div>
         </div>
       );
