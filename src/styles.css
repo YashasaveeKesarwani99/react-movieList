@@ -1,4 +1,7 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+.appBody {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 150vh;
+  background: #004d40 no-repeat fixed center;
 }

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import { emailHandler, passwordHandler } from "../../Actions/actions";
+import "./authentication.css";
+import SlideShow from "../../Components/slideShow/slideShow";
 
 class Authentication extends Component {
   constructor(props) {
@@ -56,28 +58,48 @@ class Authentication extends Component {
       );
     } else {
       return (
-        <div>
-          <h3>Movie List</h3>
-          <input
-            placeholder="Email"
-            onChange={(e) => this.props.emailHandler(e)}
-            value={this.state.email}
-          />
-          <input
-            placeholder="Password"
-            onChange={(e) => this.props.passwordHandler(e)}
-            value={this.state.password}
-          />
-          <input
-            type="submit"
-            value="SignUp"
-            onClick={() => this.clickHandler("signup")}
-          />
-          <input
-            type="submit"
-            value="LogIn"
-            onClick={() => this.clickHandler("login")}
-          />
+        <div className="authBody">
+          <h3
+            style={{
+              marginTop: "0",
+              color: "#111",
+              fontFamily: "'Helvetica Neue', sans-serif",
+              fontSize: "75px",
+              fontWeight: "bold",
+              letterSpacing: "-1px",
+              lineHeight: "1",
+              textAlign: "left",
+              padding: "2%",
+              borderBottom: "5px solid black"
+            }}
+          >
+            Movie List.
+          </h3>
+          <div className="authQuotes">
+            <SlideShow />
+          </div>
+          <div className="authContainer">
+            <input
+              placeholder="Email"
+              onChange={(e) => this.props.emailHandler(e)}
+              value={this.state.email}
+            />
+            <input
+              placeholder="Password"
+              onChange={(e) => this.props.passwordHandler(e)}
+              value={this.state.password}
+            />
+            <input
+              type="submit"
+              value="SignUp"
+              onClick={() => this.clickHandler("signup")}
+            />
+            <input
+              type="submit"
+              value="LogIn"
+              onClick={() => this.clickHandler("login")}
+            />
+          </div>
         </div>
       );
     }
